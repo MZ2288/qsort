@@ -23,15 +23,19 @@ class Store {
       return a
     }
 
-    const left = [], right = [], pivot = a[0];
+    const left = []
+    const right = []
+    const pivot = a[0]
 
-    for (var i = 1; i < a.length; i++) {
-        a[i] < pivot ? left.push(a[i]) : right.push(a[i]);
-    }
+    a.forEach((item, index) => {
+      if (index !== 0) {
+        (item < pivot) ? left.push(item) : right.push(item)
+      }
+    })
 
     this.state.qsort.push({a, left, right})
 
-    return this.qsort(left).concat(pivot, this.qsort(right));
+    return this.qsort(left).concat(pivot, this.qsort(right))
   }
 
   quickSort = () => {
@@ -41,16 +45,18 @@ class Store {
   }
 
   shuffle (array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length
+    let temporaryValue
+    let randomIndex
 
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex -= 1
+      temporaryValue = array[currentIndex]
+      array[currentIndex] = array[randomIndex]
+      array[randomIndex] = temporaryValue
     }
-    return array;
+    return array
   }
 }
 

@@ -6,11 +6,12 @@ export default class App extends Component {
     qsort: PropTypes.array.isRequired
   }
 
-  renderArray = (a) => {
+  renderArray = (a, side = false) => {
     return a.map((num, i) => {
+      const classes = 'item ' + ((!side && i === 0) ? 'first' : '')
       return (
-        <div key={i} className={'item ' + (i == 0 ? 'first' : '')}>
-          <div className="number">{num}</div>
+        <div key={i} className={classes}>
+          <div className='number'>{num}</div>
         </div>
       )
     })
@@ -19,8 +20,8 @@ export default class App extends Component {
   renderSides = (l, r) => {
     return (
       <div>
-        <div className='side'>{this.renderArray(l)}</div>
-        <div className='side'>{this.renderArray(r)}</div>
+        <div className='side'>{this.renderArray(l, true)}</div>
+        <div className='side'>{this.renderArray(r, true)}</div>
       </div>
     )
   }
@@ -30,11 +31,11 @@ export default class App extends Component {
       return (
         <div key={i} className='qsort'>
           <span className='qsort-array'>
-          {this.renderArray(q.a)}
-        </span>
+            {this.renderArray(q.a)}
+          </span>
           <span className='qsort-sides'>
-          {this.renderSides(q.left, q.right)}
-        </span>
+            {this.renderSides(q.left, q.right)}
+          </span>
         </div>
       )
     })
@@ -46,17 +47,21 @@ export default class App extends Component {
         <h2>QuickSort Visualizer App</h2>
         <pre className='code'>{`
           function qsort(a) {
-            if (a.length &lt;= 1) return a;
+            if (a.length <= 1) {
+              return a
+            }
 
-              var left = [], right = [], pivot = a[0];
+            const left = [], right = [], pivot = a[0]
 
-              for (var i = 1; i &lt; a.length; i++) {
-                  a[i] &lt; pivot ? left.push(a[i]) : right.push(a[i]);
+            a.forEach((item, index) => {
+              if (index !== 0) {
+                (item < pivot) ? left.push(item) : right.push(item)
               }
+            })
 
-              return qsort(left).concat(pivot, qsort(right));
-          }`}
-        </pre>
+            return this.qsort(left).concat(pivot, this.qsort(right))
+          }
+        `}</pre>
         <button onClick={quickSort}>Quicksort</button>
       </div>
     )
