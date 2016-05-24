@@ -19,7 +19,7 @@ export default class App extends Component {
   renderQsort = (qsort) => {
     return qsort.map((q, i) => {
       return (
-        <div key={i} className='qsort' style={{borderBottom: '1px solid #efefef'}}>
+        <div key={i} className='qsort' style={{padding: '10px 0', borderBottom: '1px solid #efefef'}}>
           <div className='qsort-array'>
             Array to be sorted: {this.renderArray(q.a, 0)}
           </div>
