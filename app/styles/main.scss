@@ -1,0 +1,46 @@
+body {
+  background-color: wheat;
+}
+
+.item {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  border: 1px solid grey;
+  background: palegreen;
+}
+
+.number {
+  text-align: center;
+  padding: 5px;
+}
+
+.first {
+  background: skyblue;
+}
+
+.side {
+  display: inline-block;
+  border: 1px solid red;
+  margin: 10px 25px;
+}
+
+.qsort {
+  width: 100%;
+  text-align: center;
+}
+
+.qsort-array, .qsort-sides {
+  margin: 20px auto;
+  min-width: 5%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.code {
+  text-align: left;
+}
