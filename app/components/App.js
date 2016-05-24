@@ -63,7 +63,7 @@ export default class App extends Component {
             const left = [], right = [], pivot = a[0]
 
             a.forEach((item, index) => {
-              if (index !== 0) {
+              if (index > 0) {
                 (item < pivot) ? left.push(item) : right.push(item)
               }
             })

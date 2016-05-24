@@ -28,7 +28,7 @@ class Store {
     const pivot = a[0]
 
     a.forEach((item, index) => {
-      if (index !== 0) {
+      if (index > 0) {
         (item < pivot) ? left.push(item) : right.push(item)
       }
     })
