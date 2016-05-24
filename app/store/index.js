@@ -38,19 +38,23 @@ class Store {
     this.state.qsort.push({ a, left, right, sleft, sright })
     const index = this.state.qsort.length - 1
 
-    const sortAndCollectLeft = (left) => {
-      const result = this.qsort(left)
-      this.state.qsort[index].sleft = result
-      return result
+    const collectLeft = (qsort) => {
+      return (a) => {
+        const result = qsort(a)
+        this.state.qsort[index].sleft = result
+        return result
+      }
     }
 
-    const sortAndCollectRight = (right) => {
-      const result = this.qsort(right)
-      this.state.qsort[index].sright = result
-      return result
+    const collectRight = (qsort) => {
+      return (a) => {
+        const result = qsort(a)
+        this.state.qsort[index].sright = result
+        return result
+      }
     }
 
-    return sortAndCollectLeft(left).concat(pivot, sortAndCollectRight(right))
+    return collectLeft(this.qsort)(left).concat(pivot, collectRight(this.qsort)(right))
   }
 
   quickSort = () => {
