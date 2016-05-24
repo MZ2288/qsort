@@ -19,22 +19,29 @@ export default class App extends Component {
   renderQsort = (qsort) => {
     return qsort.map((q, i) => {
       return (
-        <div key={i} className='qsort'>
+        <div key={i} className='qsort' style={{borderBottom: '1px solid #efefef'}}>
           <div className='qsort-array'>
-            {this.renderArray(q.a)}
+            Array to be sorted: {this.renderArray(q.a, 0)}
           </div>
           <div className='qsort-sides'>
-            <div className='side'>{this.renderArray(q.left, true)}</div>
-            <div className='side'>{this.renderArray(q.right, true)}</div>
+            Left and right partitions:
+            <div className='side'>{this.renderArray(q.left)}</div>
+            <div className='side'>{this.renderArray(q.right)}</div>
+          </div>
+          <div className='qsort-sides'>
+            Returned sorted array:
+            <div className=''>{this.renderArray(q.left.slice().sort())}</div>
+            <div className=''>{this.renderArray(q.a.slice(0, 1), 0)}</div>
+            <div className=''>{this.renderArray(q.right.slice().sort())}</div>
           </div>
         </div>
       )
     })
   }
 
-  renderArray = (a, side = false) => {
+  renderArray = (a, pivot) => {
     return a.map((num, i) => {
-      const classes = 'item ' + ((!side && i === 0) ? 'first' : '')
+      const classes = 'item ' + ((i === pivot) ? 'first' : '')
       return (
         <div key={i} className={classes}>
           <div className='number'>{num}</div>

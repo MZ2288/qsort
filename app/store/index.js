@@ -33,7 +33,7 @@ class Store {
       }
     })
 
-    this.state.qsort.push({a, left, right})
+    this.state.qsort.push({ a, left, right })
 
     return this.qsort(left).concat(pivot, this.qsort(right))
   }
