@@ -30,9 +30,9 @@ export default class App extends Component {
           </div>
           <div className='qsort-sides'>
             Returned sorted array:
-            <div className=''>{this.renderArray(q.left.slice().sort())}</div>
+            <div className=''>{this.renderArray(q.sleft)}</div>
             <div className=''>{this.renderArray(q.a.slice(0, 1), 0)}</div>
-            <div className=''>{this.renderArray(q.right.slice().sort())}</div>
+            <div className=''>{this.renderArray(q.sright)}</div>
           </div>
         </div>
       )
