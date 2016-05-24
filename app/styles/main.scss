@@ -21,9 +21,10 @@ body {
 }
 
 .side {
-  display: inline-block;
-  border: 1px solid red;
   margin: 10px 25px;
+  height: 35px;
+  border: 1px solid red;
+  min-width: 35px;
 }
 
 .qsort {
@@ -34,6 +35,10 @@ body {
 .qsort-array, .qsort-sides {
   margin: 20px auto;
   min-width: 5%;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  flex-basis: auto;
 }
 
 .header {

@@ -6,22 +6,12 @@ export default class App extends Component {
     qsort: PropTypes.array.isRequired
   }
 
-  renderArray = (a, side = false) => {
-    return a.map((num, i) => {
-      const classes = 'item ' + ((!side && i === 0) ? 'first' : '')
-      return (
-        <div key={i} className={classes}>
-          <div className='number'>{num}</div>
-        </div>
-      )
-    })
-  }
-
-  renderSides = (l, r) => {
+  render () {
+    const {qsort, quickSort} = this.props
     return (
       <div>
-        <div className='side'>{this.renderArray(l, true)}</div>
-        <div className='side'>{this.renderArray(r, true)}</div>
+        {this.renderHeader(quickSort)}
+        {this.renderQsort(qsort)}
       </div>
     )
   }
@@ -30,12 +20,24 @@ export default class App extends Component {
     return qsort.map((q, i) => {
       return (
         <div key={i} className='qsort'>
-          <span className='qsort-array'>
+          <div className='qsort-array'>
             {this.renderArray(q.a)}
-          </span>
-          <span className='qsort-sides'>
-            {this.renderSides(q.left, q.right)}
-          </span>
+          </div>
+          <div className='qsort-sides'>
+            <div className='side'>{this.renderArray(q.left, true)}</div>
+            <div className='side'>{this.renderArray(q.right, true)}</div>
+          </div>
+        </div>
+      )
+    })
+  }
+
+  renderArray = (a, side = false) => {
+    return a.map((num, i) => {
+      const classes = 'item ' + ((!side && i === 0) ? 'first' : '')
+      return (
+        <div key={i} className={classes}>
+          <div className='number'>{num}</div>
         </div>
       )
     })
@@ -67,13 +69,4 @@ export default class App extends Component {
     )
   }
 
-  render () {
-    const {qsort, quickSort} = this.props
-    return (
-      <div>
-        {this.renderHeader(quickSort)}
-        {this.renderQsort(qsort)}
-      </div>
-    )
-  }
 }
